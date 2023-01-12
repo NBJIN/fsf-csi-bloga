@@ -9,15 +9,43 @@ STATUS = ((0, "Draft"), (1, "Published"))
 
 class Create(models.Model):
     name = models.CharField(max_length=200, unique=True)
-    slug = models.SlugField(max_lenght=200, unique=True)
-    contributor = models.ForeignKey(User, on_delete=models.CASCADE, related_name='contributor') 
+    slug = models.SlugField(max_length=200, unique=True)
+    contributor_create = models.ForeignKey(User, on_delete=models.CASCADE,
+                                    related_name='blog_create')
     date_of_post = models.DateTimeField(auto_created=True)
     update_post = models.DateTimeField(auto_created=True)
-    image = Clouinary.models.CloudinaryField('image', default='placeholder')
+    image = CloudinaryField('image', default='placeholder')
     content = models.TextField()
-    no_of_likes = models.ManyToManyField(User, related_name="likes")
-    comment = models.TextField()
-    excerpt
+    no_of_likes = models.ManyToManyField(User, related_name="blog_likes")
+    comment_create = models.TextField()
+    excerpt = models.TextField()
     status = models.IntegerField(choices=STATUS, default=0)
 
+    class Meta:
+        ordering = ['-date_of_post']
 
+    def __str__(self):
+        return self.title
+
+    def no_of_likes(self):
+        return self.likes.count()
+
+
+class Comment(models.Model):
+    contributor_comment = models.ForeignKey(User, on_delete=models.CASCADE,
+                                    related_name='blog_comment')
+    email = models.EmailField()
+    date_of_comment = models.DateTimeField(auto_created=True)
+    image = CloudinaryField('image', default='placeholder')
+    content = models.TextField()
+    no_of_comments = models.ManyToManyField(User, related_name="blog_comment")
+    approved = models.BooleanField(default='false')
+
+    class Meta:
+        ordering = ['-date_of_comment']
+
+    def __str__(self):
+        return self.title
+
+    def no_of_comments(self):
+        return self.comments.count()
