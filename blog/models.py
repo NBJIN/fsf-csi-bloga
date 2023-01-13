@@ -24,7 +24,7 @@ class Create(models.Model):
         ordering = ['-date_of_post']
 
     def __str__(self):
-        return self.title
+        return self.name
 
     def no_of_likes(self):
         return self.likes.count()
