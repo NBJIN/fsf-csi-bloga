@@ -10,8 +10,7 @@ STATUS = ((0, "Draft"), (1, "Published"))
 class Create(models.Model):
     name = models.CharField(max_length=200, unique=True)
     slug = models.SlugField(max_length=200, unique=True)
-    contributor_create = models.ForeignKey(User, on_delete=models.CASCADE,
-                                    related_name='blog_create')
+    contributor_create = models.ForeignKey(User, on_delete=models.CASCADE, related_name='blog_create')
     date_of_post = models.DateTimeField(auto_created=True)
     update_post = models.DateTimeField(auto_created=True)
     image = CloudinaryField('image', default='placeholder')
@@ -32,8 +31,7 @@ class Create(models.Model):
 
 
 class Comment(models.Model):
-    contributor_comment = models.ForeignKey(User, on_delete=models.CASCADE,
-                                    related_name='blog_comment')
+    contributor_comment = models.ForeignKey(User, on_delete=models.CASCADE, related_name='blog_comment')
     email = models.EmailField()
     date_of_comment = models.DateTimeField(auto_created=True)
     image = CloudinaryField('image', default='placeholder')
