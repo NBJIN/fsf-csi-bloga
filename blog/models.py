@@ -49,3 +49,6 @@ class Comment(models.Model):
 
     def no_of_comments(self):
         return self.comments.count()
+
+
+
