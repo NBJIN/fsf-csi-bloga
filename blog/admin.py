@@ -14,15 +14,14 @@ class CreateAdmin(SummernoteModelAdmin):
 
 # @admin.register(Comments)
 
+
 @admin.register(Comment)
 class CommentAdmin(admin.ModelAdmin):
 
     list_display = ('contributor_comment', 'email', 'date_of_comment', 'content')
-    list_filter = ('contributor_comment', 'date_of_comment', 'email', 'content', 'approved')
+    list_filter = ('contributor_comment', 'date_of_comment', 'email', 'approved')
     search_fields = ['contributor_comment', 'content', 'approved']
     actions = ['approve_comment']
 
     def approve_comment(self, request, queryset):
         queryset.update(approved=True)
-    
-

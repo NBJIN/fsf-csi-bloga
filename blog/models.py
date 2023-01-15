@@ -51,4 +51,25 @@ class Comment(models.Model):
         return self.comments.count()
 
 
+class update(models.Model):
+    contributor = models.ForeignKey(User, on_delete=models.CASCADE, related_name='blog_update')
+    email = models.EmailField()
+    date_updated = models.DateTimeField(auto_created=True)
+    content = models.TextField()
+    approved = models.BooleanField(default='false')
 
+    class Meta:
+        ordering = ['-date_updated']
+
+    def __str__(self):
+        return self.contributor
+
+
+class delete(models.Model):
+    contributor = models.ForeignKey(User, on_delete=models.CASCADE, related_name='blog_delete')
+    email = models.EmailField()
+    date_deleted = models.DateTimeField(auto_now_add=True)
+    approved = models.BooleanField(default='false')
+
+    def __str__(self):
+        return self.contributor
