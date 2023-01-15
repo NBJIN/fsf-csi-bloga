@@ -29,7 +29,7 @@ class Create(models.Model):
         return self.name
 
     def no_of_likes(self):
-        return self.likes.count()
+        return self.no_of_likes.count()
 
 
 class Comment(models.Model):
@@ -48,7 +48,10 @@ class Comment(models.Model):
         return self.contributor_comment
 
     def no_of_comments(self):
-        return self.comments.count()
+        return self.no_of_comments.count()
+
+    def __str__(self):
+        return f"comment {self.body} by {self.contributor_comment}"
 
 
 class Update(models.Model):
@@ -63,6 +66,8 @@ class Update(models.Model):
 
     def __str__(self):
         return self.contributor
+
+  
 
 
 class Delete(models.Model):
