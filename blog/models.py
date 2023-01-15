@@ -74,16 +74,17 @@ class Delete(models.Model):
     def __str__(self):
         return self.contributor
 
+
 class Register_User(models.Model):
     contributor = models.CharField(max_length=100)
     email = models.EmailField()
-    username = models.CharField(max_length=50)
-    password = models.CharField(max_length=50)
+    username = models.CharField(max_length=30)
+    password = models.CharField(max_length=30)
 
     def __str__(self):
         return self.contributor
 
-class login(models.Model):
-    username = models.CharField(max_length=50)
-    password = models.CharField(max_length=50)
 
+class login(models.Model):
+    username = models.CharField(max_length=30)
+    password = models.CharField(max_length=30)

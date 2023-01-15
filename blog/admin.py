@@ -35,7 +35,6 @@ class UpdateAdmin(admin.ModelAdmin):
     search_fields = ['contributor', 'content']
     actions = ['approve_update']
 
-
     def approve_update(self, request, queryset):
         queryset.update(approved=True)
 
@@ -46,7 +45,6 @@ class DeleteAdmin(admin.ModelAdmin):
     list_filter = ('contributor', 'email', 'date_deleted', 'approved')
     search_fields = ['contributor', 'date_deleted']
     actions = ['approve_delete']
-
 
     def approve_delete(self, request, queryset):
         queryset.delete(approved=True)
