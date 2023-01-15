@@ -1,7 +1,16 @@
 from django.shortcuts import render
 from django.views import generic
-from .models import Create
 from django.http import HttpResponse
+from django.template import loader
+
+
+def csibloga(request):
+    return HttpResponse('Hello')
+
+
+def csibloga(request):
+    template = loader.get_template('base.html')
+    return HttpResponse(template.render())
 
 
 # Create your views here
