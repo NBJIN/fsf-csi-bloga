@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Create, Comment
+from .models import Create, Comment, Update, Delete
 from django_summernote.admin import SummernoteModelAdmin
 
 
@@ -25,3 +25,28 @@ class CommentAdmin(admin.ModelAdmin):
 
     def approve_comment(self, request, queryset):
         queryset.update(approved=True)
+
+
+@admin.register(Update)
+class UpdateAdmin(admin.ModelAdmin):
+
+    list_display = ('contributor', 'email', 'date_updated', 'content', 'approved')
+    list_filter = ('contributor', 'email', 'date_updated', 'content', 'approved')
+    search_fields = ['contributor', 'content']
+    actions = ['approve_update']
+
+
+    def approve_update(self, request, queryset):
+        queryset.update(approved=True)
+
+
+@admin.register(Delete)
+class DeleteAdmin(admin.ModelAdmin):
+    list_display = ('contributor', 'email', 'date_deleted', 'approved')
+    list_filter = ('contributor', 'email', 'date_deleted', 'approved')
+    search_fields = ['contributor', 'date_deleted']
+    actions = ['approve_delete']
+
+
+    def approve_delete(self, request, queryset):
+        queryset.delete(approved=True)

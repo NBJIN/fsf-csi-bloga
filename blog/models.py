@@ -51,7 +51,7 @@ class Comment(models.Model):
         return self.comments.count()
 
 
-class update(models.Model):
+class Update(models.Model):
     contributor = models.ForeignKey(User, on_delete=models.CASCADE, related_name='blog_update')
     email = models.EmailField()
     date_updated = models.DateTimeField(auto_created=True)
@@ -65,7 +65,7 @@ class update(models.Model):
         return self.contributor
 
 
-class delete(models.Model):
+class Delete(models.Model):
     contributor = models.ForeignKey(User, on_delete=models.CASCADE, related_name='blog_delete')
     email = models.EmailField()
     date_deleted = models.DateTimeField(auto_now_add=True)
@@ -73,3 +73,17 @@ class delete(models.Model):
 
     def __str__(self):
         return self.contributor
+
+class Register_User(models.Model):
+    contributor = models.CharField(max_length=100)
+    email = models.EmailField()
+    username = models.CharField(max_length=50)
+    password = models.CharField(max_length=50)
+
+    def __str__(self):
+        return self.contributor
+
+class login(models.Model):
+    username = models.CharField(max_length=50)
+    password = models.CharField(max_length=50)
+
