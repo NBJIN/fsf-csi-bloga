@@ -19,10 +19,12 @@ from django.contrib.auth import views as auth_views
 from django.urls import path, include
 
 
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('summernote/', include('django_summernote.urls')),
-    path('', include('blog.urls'), name='blog_urls')
+    path('', include('blog.urls'), name='blog_urls'),
+    # path('', views.Create, name='Create'),
     # path('csibloga/', view_csibloga, name='csiblog')
     # path('', include('csibloga.urls')),
     # path('csibloga/', include('csibloga.urls')),

@@ -11,6 +11,8 @@ class CreateList(generic.ListView):
     template_name = 'Create.html'
     paginate_by = 6
 
+def base(request):
+    return render(request, 'base.html')
 
 # def csibloga(request):
     # return HttpResponse('Hello')

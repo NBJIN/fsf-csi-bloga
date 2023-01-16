@@ -91,3 +91,14 @@ class Register_User(models.Model):
 class login(models.Model):
     username = models.CharField(max_length=30)
     password = models.CharField(max_length=30)
+
+
+class Image(models.Model):
+    # image field
+    image = CloudinaryField('image')
+    # title field for image
+    caption = models.CharField(max_length=100, blank=True)
+
+    def __str__(self):
+        return self.caption if self.caption != "" else "No caption"
+

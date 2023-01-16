@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Create, Comment, Update, Delete
+from .models import Create, Comment, Update, Delete, Image, CloudinaryField
 from django_summernote.admin import SummernoteModelAdmin
 
 
@@ -48,3 +48,22 @@ class DeleteAdmin(admin.ModelAdmin):
 
     def approve_delete(self, request, queryset):
         queryset.delete(approved=True)
+
+
+
+@admin.register(Image)
+class ImageAdmin(admin.ModelAdmin):
+    image = CloudinaryField('image')
+    
+
+#     def __str__(self):
+#         return self.caption if self.caption != "" else "No caption"
+
+
+#         @admin.register(Photo)     
+# class Photo(models.Model):
+#     image = CloudinaryField('image')
+#     caption = models.CharField(max_length=100, blank=True)
+
+#     def __str__(self):
+#         return self.caption if self.caption != "" else "No caption"
