@@ -53,8 +53,7 @@ class DeleteAdmin(admin.ModelAdmin):
 
 @admin.register(Image)
 class ImageAdmin(admin.ModelAdmin):
-    image = CloudinaryField('image')
-    
+    image = CloudinaryField(null=True, blank=True, upload_to="images/")
 
 #     def __str__(self):
 #         return self.caption if self.caption != "" else "No caption"

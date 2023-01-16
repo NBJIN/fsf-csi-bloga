@@ -1,7 +1,10 @@
 from django.shortcuts import render
 from django.views import generic
 from django.http import HttpResponse
-from .models import Create
+from .models import Create, Image
+from django import forms
+
+from .forms import ImageForm
 from django.template import loader
 
 
@@ -11,8 +14,22 @@ class CreateList(generic.ListView):
     template_name = 'Create.html'
     paginate_by = 6
 
-def base(request):
-    return render(request, 'base.html')
+
+# def upload(request):
+#     context = dict(backend_form=ImageForm())
+
+#     if request.method == 'Image':
+#         form = ImageForm(request.Image, request.FILES)
+#         context['Image'] = form.instance
+#     if form.is_valid():
+#         form.save()
+
+#         return render(request, 'blog-image', context)
+
+#     if request.method == 'blog-image'
+
+    # def base(request):
+    # return render(request, 'base.html')
 
 # def csibloga(request):
     # return HttpResponse('Hello')
@@ -23,9 +40,7 @@ def base(request):
     # return HttpResponse(template.render())
 
 
-# Create your views here
-
-
 # class CreateList(generic.ListView):
     # queryset = Create.objects.filter(status=1).order_by('-date_of_comment')
-    # template_name =
+    # template_name = "Create.html"
+# Create your views here
