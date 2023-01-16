@@ -7,8 +7,8 @@ from django.template import loader
 
 class CreateList(generic.ListView):
     model = Create
-    queryset = Create.objects.filter(status=1).order_by('-date_of_comment')
-    template_name = 'home.html'
+    queryset = Create.objects.filter(status=1).order_by('-date_of_post')
+    template_name = 'Create.html'
     paginate_by = 6
 
 

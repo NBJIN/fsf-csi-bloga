@@ -35,7 +35,7 @@ class Create(models.Model):
 class Comment(models.Model):
     contributor_comment = models.ForeignKey(User, on_delete=models.CASCADE, related_name='blog_comment')
     email = models.EmailField()
-    date_of_comment= models.DateTimeField(auto_created=True)
+    date_of_comment = models.DateTimeField(auto_created=True)
     image = CloudinaryField('image', default='placeholder')
     content = models.TextField()
     no_of_comments = models.ManyToManyField(User, related_name="blog_comment")
