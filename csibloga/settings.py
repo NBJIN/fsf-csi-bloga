@@ -32,7 +32,7 @@ DEBUG = True
 
 X_FRAME_OPTIONS = 'SAMEORGIN'
 
-ALLOWED_HOSTS = ['csiblog.herokuapp.com', 'localhost']
+ALLOWED_HOSTS = ['csibloga.herokuapp.com', 'localhost']
 
 
 # Application definition

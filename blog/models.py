@@ -1,5 +1,5 @@
 from django.db import models
-from django.contrib.auth.models import user, timezone
+from django.contrib.auth.models import User, timezone
 from cloudinary.models import CloudinaryField
 
 STATUS = (
@@ -25,8 +25,9 @@ class Create(models.Model):
     class Meta:
         ordering = ['-date_of_post']
 
+# On admin page allow user to see name and author
     def __str__(self):
-        return self.name
+        return self.name + ' | ' + slef.contributor_create
 
     def no_of_likes(self):
         return self.no_of_likes.count()
@@ -93,11 +94,11 @@ class login(models.Model):
     password = models.CharField(max_length=30)
 
 
-class Image(models.Model):
-    # image field
-    image = CloudinaryField(null=True, blank=True, upload_to="images/")
-    # title field for image
-    caption = models.CharField(max_length=100, blank=True)
+# class Image(models.Model):
+#     # image field
+#     image = CloudinaryField(null=True, blank=True, upload_to="images/")
+#     # title field for image
+#     caption = models.CharField(max_length=100, blank=True)
 
-    def __str__(self):
-        return self.caption if self.caption != "" else "No caption"
+#     def __str__(self):
+#         return self.caption if self.caption != "" else "No caption"

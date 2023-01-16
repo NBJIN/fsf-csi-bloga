@@ -1,1 +1,1 @@
-web: gunicorn csiblog.wsgi
+web: gunicorn csibloga.wsgi

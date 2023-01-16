@@ -1,18 +1,27 @@
 from django.shortcuts import render
 from django.views import generic
 from django.http import HttpResponse
-from .models import Create, Image
-from django import forms
+# from models import views
+# from models import Create
+# from django import forms
 
-from .forms import ImageForm
+# from .forms import ImageForm
 from django.template import loader
 
 
-class CreateList(generic.ListView):
-    model = Create
-    queryset = Create.objects.filter(status=1).order_by('-date_of_post')
-    template_name = 'Create.html'
-    paginate_by = 6
+def base(request):
+    return render(request, 'base.html', {})
+
+
+def CreateList(request):
+    return render(request, 'Create.html', {})
+
+
+# class CreateList(generic.ListView):
+#     model = Create
+#     queryset = Create.objects.filter(status=1).order_by('-date_of_post')
+#     template_name = 'Create.html'
+#     paginate_by = 6
 
 
 # def upload(request):
