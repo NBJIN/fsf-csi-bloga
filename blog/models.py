@@ -18,7 +18,7 @@ class Create(models.Model):
     update_post = models.DateTimeField(auto_now_add=True)
     image = CloudinaryField('image', default='placeholder')
     content = models.TextField()
-    no_of_likes = models.ManyToManyField(User, related_name="blog_likes")
+    no_of_likes = models.ManyToManyField(User, related_name="blog_no_of_likes")
     excerpt = models.TextField()
     status = models.IntegerField(choices=STATUS, default=0)
 
@@ -35,7 +35,7 @@ class Create(models.Model):
 class Comment(models.Model):
     contributor_comment = models.ForeignKey(User, on_delete=models.CASCADE, related_name='blog_comment')
     email = models.EmailField()
-    date_of_comment = models.DateTimeField(auto_created=True)
+    date_of_comment= models.DateTimeField(auto_created=True)
     image = CloudinaryField('image', default='placeholder')
     content = models.TextField()
     no_of_comments = models.ManyToManyField(User, related_name="blog_comment")
@@ -66,8 +66,6 @@ class Update(models.Model):
 
     def __str__(self):
         return self.contributor
-
-  
 
 
 class Delete(models.Model):

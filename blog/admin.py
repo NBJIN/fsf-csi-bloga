@@ -6,8 +6,8 @@ from django_summernote.admin import SummernoteModelAdmin
 @admin.register(Create)
 class CreateAdmin(SummernoteModelAdmin):
 
-    list_display = ('name', 'slug', 'contributor_create', 'date_of_post')
-    list_filter = ('status', 'name', 'contributor_create', 'date_of_post',)
+    list_display = ('name', 'slug', 'contributor_create', 'date_of_post', 'status')
+    list_filter = ('status', 'name', 'contributor_create', 'date_of_post')
     search_fields = ['name', 'content']
     prepopulated_fields = {'slug': ('name',)}
     summernote_fields = ('content')
@@ -18,9 +18,9 @@ class CreateAdmin(SummernoteModelAdmin):
 @admin.register(Comment)
 class CommentAdmin(admin.ModelAdmin):
 
-    list_display = ('contributor_comment', 'email', 'date_of_comment', 'content')
+    list_display = ('contributor_comment', 'email', 'date_of_comment', 'content', 'approved')
     list_filter = ('contributor_comment', 'date_of_comment', 'email', 'approved')
-    search_fields = ['contributor_comment', 'content', 'approved']
+    search_fields = ['contributor_comment', 'approved']
     actions = ['approve_comment']
 
     def approve_comment(self, request, queryset):
@@ -31,8 +31,8 @@ class CommentAdmin(admin.ModelAdmin):
 class UpdateAdmin(admin.ModelAdmin):
 
     list_display = ('contributor', 'email', 'date_updated', 'content', 'approved')
-    list_filter = ('contributor', 'email', 'date_updated', 'content', 'approved')
-    search_fields = ['contributor', 'content']
+    list_filter = ('contributor', 'email', 'date_updated', 'approved')
+    search_fields = ['contributor', 'approved']
     actions = ['approve_update']
 
     def approve_update(self, request, queryset):
