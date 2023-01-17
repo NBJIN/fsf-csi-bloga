@@ -1,5 +1,23 @@
 {% extends "base.html" %}
 
-{% block content %}
+<!-- Create Entries Column -->
+<div class="col-12 mt-3 left">
+    <div class="row">
+        {% for create in create_list %}
+        <div clas="card mb-4">
+            <div class="card mb-4">
+                <div class="card-body">
+                    CSI BLOG
+                </div>
+            </div>
+        </div>
 
-{% endblock %}
+        {% if forloop.counter|divisibleby:3 %}
+    </div>
+    <div class="row">
+        {% end if %}
+        {% endfor %}
+    </div>
+</div>
+</div>
+

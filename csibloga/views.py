@@ -12,7 +12,7 @@ class CreateList(generic.ListView):
     # added want only published posts to be visible to the user
     queryset = Create.objects.filter(status=1).order_by('-date_of_post')
     # added name of html file
-    template_name
+    template_name = 'Index.html'
     # added only want to see 6 post at at time on page
     paginate_by = 6
 
