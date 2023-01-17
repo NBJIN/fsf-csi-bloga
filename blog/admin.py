@@ -1,18 +1,28 @@
+# standard
 from django.contrib import admin
+# added models from models.py file
 from .models import Create, Comment, Update, Delete, CloudinaryField, Register_User, login
+# added models for adding summer note
 from django_summernote.admin import SummernoteModelAdmin
+
+#  added create admin model
 
 
 @admin.register(Create)
 class CreateAdmin(SummernoteModelAdmin):
-
+    # list that will be displayed in admin page
     list_display = ('name', 'slug', 'contributor_create', 'date_of_post', 'status')
+    # fields that you can filter by
     list_filter = ('status', 'name', 'contributor_create', 'date_of_post')
     search_fields = ['name', 'content']
+    # name field will be generated automatically by slug
     prepopulated_fields = {'slug': ('name',)}
+    # field that summernote will be applied to
     summernote_fields = ('content')
 
 # @admin.register(Comments)
+
+#  added comment admin model
 
 
 @admin.register(Comment)
@@ -22,6 +32,7 @@ class CommentAdmin(admin.ModelAdmin):
     list_filter = ('contributor_comment', 'date_of_comment', 'email', 'approved')
     search_fields = ['contributor_comment', 'approved']
     actions = ['approve_comment']
+    # approve comments
 
     def approve_comment(self, request, queryset):
         queryset.update(approved=True)
@@ -45,6 +56,10 @@ class DeleteAdmin(admin.ModelAdmin):
     list_filter = ('contributor', 'email', 'date_deleted', 'approved')
     search_fields = ['contributor', 'date_deleted']
     actions = ['approve_delete']
+
+    # admin.site.register(login)
+
+    # admin.site.register(Register_User)
 
     # def approve_delete(self, request, queryset):
     #     queryset.delete(approved=True)
