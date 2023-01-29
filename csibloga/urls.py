@@ -14,39 +14,11 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 
-from . import views
-# standard
+from .models import views
 from django.contrib import admin
-# standard to path , include allowss to include urls for other files
 from django.urls import path, include, base
 from django.contrib.auth import views as auth_views
 
-
 urlpatterns = [
-    # standard
     path('admin/', admin.site.urls),
-    # added url for summernote
-    path('summernote/', include('django_summernote.urls')),
-    path('', include('blog.urls'), name='blog_urls'),
 ]
-
-# urlpatterns = [
-#     # path('admin/', admin.site.urls),
-#     # path('', include('csibloga.urls')),
-#     # path('', views.CreateList.as_view(), name='base')
-# ]
-
-# from django.contrib import admin
-# from django.contrib.auth import views as auth_views
-# from django.urls import path, include
-# from django.contrib import admin
-
-# urlpatterns = [
-#     path('admin/', admin.site.urls),
-#     path('summernote/', include('django_summernote.urls')),
-#     # path('', include('blog.urls'), name='blog_urls'),
-#     # path('', views.Create, name='Create'),
-#     path('csibloga/', view_csibloga, name='csiblog')
-#     path('', include('csibloga.urls')),
-#     # path('csibloga/', include('csibloga.urls')),
-#     path('Register_User/', user_views.register, name='register'),

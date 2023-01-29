@@ -20,7 +20,8 @@ STATUS = (
 class Create(models.Model):
     name = models.CharField(max_length=200, unique=True)
     slug = models.SlugField(max_length=200, unique=True)
-    contributor_create = models.ForeignKey(User, on_delete=models.CASCADE, related_name='create')
+    contributor_create = models.ForeignKey(
+        User, on_delete=models.CASCADE, related_name='create')
     date_of_post = models.DateTimeField(auto_created=True)
     update_post = models.DateTimeField(auto_now_add=True)
     image = CloudinaryField('image', default='placeholder')
@@ -45,7 +46,8 @@ class Create(models.Model):
 
 
 class Comment(models.Model):
-    contributor_comment = models.ForeignKey(User, on_delete=models.CASCADE, related_name='comment')
+    contributor_comment = models.ForeignKey(
+        User, on_delete=models.CASCADE, related_name='comment')
     email = models.EmailField()
     date_of_comment = models.DateTimeField(auto_created=True)
     image = CloudinaryField('image', default='placeholder')
@@ -70,59 +72,3 @@ class Meta:
     def __str__(self):
         return f"comment {self.body} by {self.contributor_comment}"
 
-# added Update Comment model
-
-
-class Update(models.Model):
-    contributor = models.ForeignKey(User, on_delete=models.CASCADE, related_name='update')
-    email = models.EmailField()
-    date_updated = models.DateTimeField(auto_created=True)
-    content = models.TextField()
-    approved = models.BooleanField(default='false')
-
-# added on admin page allow auther to see contributor
-    def __str__(self):
-        return self.contributor
-
-# added Delete Comment model
-
-
-class Delete(models.Model):
-    contributor = models.ForeignKey(User, on_delete=models.CASCADE, related_name='delete')
-    email = models.EmailField()
-    date_deleted = models.DateTimeField(auto_now_add=True)
-    approved = models.BooleanField(default='false')
-
-# added on admin page allow auther to see contributor
-    def __str__(self):
-        return self.contributor
-
-# added Register Comment model
-
-
-class Register_User(models.Model):
-    contributor = models.CharField(max_length=100)
-    email = models.EmailField()
-    username = models.CharField(max_length=30)
-    password = models.CharField(max_length=30)
-
-# added on admin page allow auther to see contributor
-    def __str__(self):
-        return self.contributor
-
-# added Register Comment model
-
-
-class login(models.Model):
-    username = models.CharField(max_length=30)
-    password = models.CharField(max_length=30)
-
-
-# class Image(models.Model):
-#     # image field
-#     image = CloudinaryField(null=True, blank=True, upload_to="images/")
-#     # title field for image
-#     caption = models.CharField(max_length=100, blank=True)
-
-#     def __str__(self):
-#         return self.caption if self.caption != "" else "No caption"
